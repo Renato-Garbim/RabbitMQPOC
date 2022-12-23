@@ -4,37 +4,21 @@ using System.Text;
 
 namespace Exchange_Receiver
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
-            using (var connection = factory.CreateConnection())
-            using (var channel = connection.CreateModel())
-            {
-                channel.ExchangeDeclare(exchange: "direct_logs",type: "direct");
-                var queueName = channel.QueueDeclare().QueueName;
-
-                if (args.Length < 1)
-                {
-                    Console.Error.WriteLine("Usage: {0} [info] [warning] [error]",
-                                            Environment.GetCommandLineArgs()[0]);
-                    Console.WriteLine(" Press [enter] to exit.");
-                    Console.ReadLine();
-                    Environment.ExitCode = 1;
-                    return;
-                }
-
-                foreach (var severity in args)
-                {
-                    channel.QueueBind(queue: queueName,
-                                      exchange: "direct_logs",
-                                      routingKey: severity);
-                }
+            IModel? _channel = ConnectionBuilder.MontarChannel("localhost");
+            ConnectionBuilder.ExchangeConfig(_channel, "direct_logs", "direct");
+            string _queuName = ConnectionBuilder.CriarQueuGenericaDescartavel(_channel);
+            
+            using (_channel)
+            {                                
+                ConnectionBuilder.GerarBindingParaCadaStatusDoSistema(_channel, _queuName, "direct_logs", new List<string>() { "info", "warning", "error" });
 
                 Console.WriteLine(" [*] Waiting for messages.");
 
-                var consumer = new EventingBasicConsumer(channel);
+                var consumer = new EventingBasicConsumer(_channel);
                 consumer.Received += (model, ea) =>
                 {
                     var body = ea.Body.ToArray();
@@ -43,7 +27,8 @@ namespace Exchange_Receiver
                     Console.WriteLine(" [x] Received '{0}':'{1}'",
                                       routingKey, message);
                 };
-                channel.BasicConsume(queue: queueName,
+
+                _channel.BasicConsume(queue: _queuName,
                                      autoAck: true,
                                      consumer: consumer);
 
