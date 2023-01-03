@@ -70,5 +70,6 @@ namespace RabbitMQRPC_Client_POC
             }
 
 
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace Topic_Publisher
                               ? string.Join(" ", args.Skip(1).ToArray())
                               : "Hello World!";
                 var body = Encoding.UTF8.GetBytes(message);
+
                 channel.BasicPublish(exchange: "topic_logs",
                                      routingKey: routingKey,
                                      basicProperties: null,

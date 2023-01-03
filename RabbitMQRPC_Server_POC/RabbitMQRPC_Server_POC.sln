@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQRPC_Server_POC", "RabbitMQRPC_Server_POC.csproj", "{A9C280E1-EC8E-4969-BFFD-C14CF7C59706}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQRPC_Client_POC", "..\RabbitMQRPC_Client_POC\RabbitMQRPC_Client_POC.csproj", "{C586DB13-2194-4783-8F9F-81D419EED152}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A9C280E1-EC8E-4969-BFFD-C14CF7C59706}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9C280E1-EC8E-4969-BFFD-C14CF7C59706}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9C280E1-EC8E-4969-BFFD-C14CF7C59706}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C586DB13-2194-4783-8F9F-81D419EED152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C586DB13-2194-4783-8F9F-81D419EED152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C586DB13-2194-4783-8F9F-81D419EED152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C586DB13-2194-4783-8F9F-81D419EED152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
