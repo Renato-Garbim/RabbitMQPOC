@@ -3,15 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publisher_Binding_Topics_POC", "Publisher_Binding_Topics_POC\Publisher_Binding_Topics_POC.csproj", "{FFACC2ED-433D-4D58-9ABC-1AAA96982A12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publisher_Binding_Topics_POC", "Publisher_Binding_Topics_POC\Publisher_Binding_Topics_POC.csproj", "{FFACC2ED-433D-4D58-9ABC-1AAA96982A12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver_A_Binding_Topics_POC", "Receiver_A_Binding_Topics_POC\Receiver_A_Binding_Topics_POC.csproj", "{DBBB7D9D-9305-4B88-97C7-0A90FD858F51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver_A_Binding_Topics_POC", "Receiver_A_Binding_Topics_POC\Receiver_A_Binding_Topics_POC.csproj", "{DBBB7D9D-9305-4B88-97C7-0A90FD858F51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver_B_Binding_Topics_POC", "Receiver_B_Binding_Topics_POC\Receiver_B_Binding_Topics_POC.csproj", "{B012C52F-AF80-4C5E-855A-8EE0BB935D46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver_B_Binding_Topics_POC", "Receiver_B_Binding_Topics_POC\Receiver_B_Binding_Topics_POC.csproj", "{B012C52F-AF80-4C5E-855A-8EE0BB935D46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver_C_Binding_Topics_Response_POC", "Receiver_C_Binding_Topics_Response_POC\Receiver_C_Binding_Topics_Response_POC.csproj", "{E84CDFD1-DBFD-4C1F-9891-A2EE65C79188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver_C_Binding_Topics_Response_POC", "Receiver_C_Binding_Topics_Response_POC\Receiver_C_Binding_Topics_Response_POC.csproj", "{E84CDFD1-DBFD-4C1F-9891-A2EE65C79188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver_D_Binding_Response_POC", "Receiver_D_Binding_Response_POC\Receiver_D_Binding_Response_POC.csproj", "{77CD3921-C3DE-4C33-8195-137DF43875D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver_D_Binding_Response_POC", "Receiver_D_Binding_Response_POC\Receiver_D_Binding_Response_POC.csproj", "{77CD3921-C3DE-4C33-8195-137DF43875D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "async", "async", "{58DDAFC3-3527-4C3A-86A4-7BECF031E5A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publisher_Async_RPC_POC", "Publisher_Async_RCP_POC\Publisher_Async_RPC_POC.csproj", "{CF1406DA-BF73-4CD7-932F-FCF303ACB13A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver_A_Async_RPC_POC", "Receiver_A_Async_RCP_POC\Receiver_A_Async_RPC_POC.csproj", "{A7451CFD-8E05-4D65-B30C-82820C071866}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +45,21 @@ Global
 		{77CD3921-C3DE-4C33-8195-137DF43875D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77CD3921-C3DE-4C33-8195-137DF43875D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77CD3921-C3DE-4C33-8195-137DF43875D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF1406DA-BF73-4CD7-932F-FCF303ACB13A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF1406DA-BF73-4CD7-932F-FCF303ACB13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF1406DA-BF73-4CD7-932F-FCF303ACB13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF1406DA-BF73-4CD7-932F-FCF303ACB13A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7451CFD-8E05-4D65-B30C-82820C071866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7451CFD-8E05-4D65-B30C-82820C071866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7451CFD-8E05-4D65-B30C-82820C071866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7451CFD-8E05-4D65-B30C-82820C071866}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CF1406DA-BF73-4CD7-932F-FCF303ACB13A} = {58DDAFC3-3527-4C3A-86A4-7BECF031E5A1}
+		{A7451CFD-8E05-4D65-B30C-82820C071866} = {58DDAFC3-3527-4C3A-86A4-7BECF031E5A1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BDBA62A3-17C7-4A18-94D9-FBD929E53241}
