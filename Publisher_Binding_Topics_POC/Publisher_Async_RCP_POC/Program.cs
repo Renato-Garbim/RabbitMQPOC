@@ -8,38 +8,31 @@ namespace Publisher_Async_RCP_POC
 {
     public class Program
     {
-        static async void Main(string[] args)
-        {
+         static void Main(string[] args)
+         {
 
+            MainAsync().Wait();
+
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+
+        }
+
+        static async Task MainAsync()
+        {
             var _rpcClient = new RpcClient();
             _rpcClient.Initialiaze();
 
-            var task = await ExecuteFetchCommand();
-
-            //var FetchCommand = ExecuteSendAsync<string> ExecuteFetchCommand;
-
-            Console.WriteLine("Hello, World!");
-        }
-
-        public async Task ExecuteFetchCommand()
-        {
-            var _rpcClient = new RpcClient();
-
             var response = await _rpcClient.SendAsync("15");
 
-            //LogMessages.Add($"Generating 15 UserNames");
+            Console.WriteLine(" [.] Got '{0}'", response);
 
-            //await foreach (var userName in DeserializeStreaming<string>(response))
-            //{
-            //    LogMessages.Add(userName);
-            //}
+            response = await _rpcClient.SendAsync("20");
+
+            Console.WriteLine(" [.] Got '{0}'", response);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        
+       
     }
 }

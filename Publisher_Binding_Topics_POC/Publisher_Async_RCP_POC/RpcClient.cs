@@ -17,7 +17,7 @@ namespace Publisher_Async_RPC_POC
         private string QueueName = "UserRpcQueue";
         private bool _isDisposed;
 
-        private ConcurrentDictionary<string, TaskCompletionSource<string>> _activeTaskQueue = new ConcurrentDictionary<string, TaskCompletionSource<string>>();
+        private ConcurrentDictionary<string, TaskCompletionSource<string>> _pendingMessages = new ConcurrentDictionary<string, TaskCompletionSource<string>>();
 
         public void Initialiaze()
         {
@@ -40,23 +40,35 @@ namespace Publisher_Async_RPC_POC
             var body = args.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
 
-            if (_activeTaskQueue.TryRemove(args.BasicProperties.CorrelationId, out var taskCompletionSource))
+            if (_pendingMessages.TryRemove(args.BasicProperties.CorrelationId, out var taskCompletionSource))
             {
                 taskCompletionSource.SetResult(message);
             }
         }
 
+        private void Publish(string message, string correlationId)
+        {
+            var props = _channel.CreateBasicProperties();
+            props.CorrelationId = correlationId;
+            props.ReplyTo = _responseQueueName;
+
+            byte[] messageBytes = Encoding.UTF8.GetBytes(message);
+            _channel.BasicPublish(exchange: "", routingKey: "UserRpcQueue", props, body: messageBytes);
+
+            Console.WriteLine($"Sent: {message} with CorrelationId {correlationId}");
+        }
+
         public Task<string> SendAsync(string message)
         {
-            var basicProperties = _channel.CreateBasicProperties();
-            basicProperties.ReplyTo = _responseQueueName;
-            var messageId = Guid.NewGuid().ToString();
-            basicProperties.CorrelationId = messageId;
             var taskCompletionSource = new TaskCompletionSource<string>();
 
-            var messageToSend = Encoding.UTF8.GetBytes(message);
-            _channel.BasicPublish(exchange: "", routingKey: "UserRpcQueue", basicProperties: basicProperties, body: messageToSend);
-            _activeTaskQueue.TryAdd(messageId, taskCompletionSource);
+            var messageId = Guid.NewGuid().ToString();
+            
+            Publish(message, messageId);
+
+            //_pendingMessages[messageId] = taskCompletionSource;
+
+            _pendingMessages.TryAdd(messageId, taskCompletionSource);
             return taskCompletionSource.Task;
         }
 

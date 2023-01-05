@@ -12,24 +12,12 @@ namespace Receiver_A_Async_RCP_POC
         {
             RpcClient _rpcClient = new RpcClient();
 
-            _rpcClient.LogMessage += (m) =>
-            {
-                // Implementar com um Mediator ou um EventHandler service, hostedService
-                //Application.Current.Dispatcher.Invoke(() => LogMessages.Add(m));
-            };
-
             _rpcClient.InitializeAndRun();
 
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine(" Press [enter] to exit.");
+            Console.ReadLine();
+
         }
 
-        public ObservableCollection<string> LogMessages { get; set; } = new ObservableCollection<string>();
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }
